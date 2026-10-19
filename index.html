@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>caio</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Tabela Periódica</title>
+    <link rel="stylesheet" href="css/estilo.css" type="text/css">
+
 </head>
 
 <body>
@@ -14,12 +15,12 @@
             <a class="navbar-brand" href="#">
                 <font dir="auto" style="vertical-align: inherit;">
                     <font dir="auto" style="vertical-align: inherit;">
-                        <!-- <img src="logo_steam.jpg" alt=""> -->
+                        <!-- <img src="" alt=""> -->
 
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                             id="Layer_1" x="0px" y="0px" width="293.44px" height="89.333px"
                             viewBox="0 0 293.44px 89.333" enable-background="new 0 0 293.44px 89.333"
-                            xml:space="preserve">
+                            xml:space="preserve"> -->
                             <g>
                                 <path fill="#C5C3C0"
                                     d="M44.238,0.601C21,0.601,1.963,18.519,0.154,41.29l23.71,9.803c2.009-1.374,4.436-2.179,7.047-2.179   c0.234,0,0.467,0.008,0.698,0.021l10.544-15.283c0-0.073-0.001-0.144-0.001-0.216c0-9.199,7.483-16.683,16.683-16.683   c9.199,0,16.682,7.484,16.682,16.683c0,9.199-7.483,16.684-16.682,16.684c-0.127,0-0.253-0.003-0.379-0.006l-15.038,10.73   c0.008,0.195,0.015,0.394,0.015,0.592c0,6.906-5.617,12.522-12.522,12.522c-6.061,0-11.129-4.326-12.277-10.055L1.678,56.893   c5.25,18.568,22.309,32.181,42.56,32.181c24.432,0,44.237-19.806,44.237-44.235C88.475,20.406,68.669,0.601,44.238,0.601" />
@@ -52,9 +53,9 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="index.html">
                             <font dir="auto" style="vertical-align: inherit;">
-                                <font dir="auto" style="vertical-align: inherit;">LOJA
+                                <font dir="auto" style="vertical-align: inherit;">Tabela
                                 </font>
                             </font><span class="visually-hidden">
                                 <font dir="auto" style="vertical-align: inherit;">
@@ -71,25 +72,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="paginas/sobre.html">
                             <font dir="auto" style="vertical-align: inherit;">
                                 <font dir="auto" style="vertical-align: inherit;">SOBRE</font>
                             </font>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <font dir="auto" style="vertical-align: inherit;">
                                 <font dir="auto" style="vertical-align: inherit;">SUPORTE</font>
                             </font>
                         </a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    </li> -->
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <font dir="auto" style="vertical-align: inherit;">
-                                <!-- <font dir="auto" style="vertical-align: inherit;">SUPORTE</font> -->
-                            </font>
+                                <font dir="auto" style="vertical-align: inherit;">SUPORTE</font>
+                            </font> -->
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">
@@ -116,19 +117,92 @@
                         </div>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <!-- <form class="d-flex">
                     <input class="form-control me-sm-2" type="search" placeholder="Procurar">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">
                         <font dir="auto" style="vertical-align: inherit;">
                             <font dir="auto" style="vertical-align: inherit;">Procurar</font>
                         </font>
                     </button>
-                </form>
+                </form> -->
             </div>
         </div>
     </nav>
 
-    <script src="script.js"></script>
+        <main class="container-fluid py-4">
+
+        <!-- ============ CABEÇALHO ============ -->
+        <header class="cabecalho">
+            <div>
+                <h1>Tabela Periódica</h1>
+                <p class="text-body-secondary m-0">
+                    Clique em um elemento para ver os dados dele.
+                </p>
+            </div>
+
+            <div class="caixa-pesquisa">
+                <label for="campo-pesquisa" class=""><i class="bi bi-search"></i> Pesquisar elemento</label>
+                <input type="search" id="campo-pesquisa" class="form-control"
+                    placeholder="Nome, símbolo, número ou distribuição" autocomplete="off">
+                <small id="texto-resultado" class="text-body-secondary"></small>
+            </div>
+        </header>
+
+
+        <!-- ============ TABELA ============ -->
+        <!-- A rolagem deixa ver a tabela inteira em telas pequenas -->
+        <div class="rolagem">
+            <div id="tabela-periodica" class="tabela-periodica">
+
+                <!-- A legenda fica no espaço vazio no meio da tabela -->
+                <div class="legenda">
+                    <div>
+                        <h2 class="titulo-legenda">Categorias</h2>
+                        <ul id="legenda-tipos" class="lista-legenda"></ul>
+                    </div>
+                    <div>
+                        <h2 class="titulo-legenda">Estado físico (CATP: 25 °C e 100 kPa)</h2>
+                        <ul id="legenda-estados" class="lista-legenda"></ul>
+                    </div>
+                </div>
+
+                <!-- As células dos elementos são criadas pelo script.js -->
+
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- ============ POPUP DO ELEMENTO ============ -->
+    <!-- <dialog> é uma janela que já vem pronta no HTML -->
+    <dialog id="popup-elemento" class="popup">
+        <div class="popup-conteudo">
+
+            <div class="popup-topo">
+                <h2 id="popup-titulo" class="h3 m-0 text-capitalize"></h2>
+                <button id="botao-fechar" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-x-lg"></i> Fechar
+                </button>
+            </div>
+
+            <div class="row g-4">
+                <div id="popup-celula" class="col-sm-auto"></div>
+
+                <div class="col">
+                    <table class="table table-sm m-0">
+                        <tbody id="popup-dados"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </dialog>
+
+
+    <!-- Primeiro os dados, depois o script que usa os dados -->
+    <script src="dados/elementos.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

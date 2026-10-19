@@ -1,0 +1,405 @@
+/* 
+=================================================
+region IMPORTAÇÕES
+=================================================
+*/
+
+/*
+Importa o template "slate" do bootswatch.
+Para mudar, trocar "slate" para algum outro como quartz, solar, vapor, etc.
+Disponível em   https://bootswatch.com
+*/
+@import url("https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/slate/bootstrap.min.css");
+
+/* Importa os ícones */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* 
+-------------------------------------------------
+end region IMPORTAÇÕES
+------------------------------------------------- 
+*/
+
+
+
+/* 
+=================================================
+region CONFIGURAÇÕES
+=================================================
+Todas as personalizações ficam aqui.
+Mude um valor e ele muda no site inteiro.
+As cores que começam com var(--bs-...) vêm do tema
+do Bootswatch e mudam quando você troca o tema.
+Para usar uma cor fixa, escreva por exemplo: #e74c3c
+*/
+
+:root {
+    /* 
+    Para manter a fonte do template, use inherit
+    Para usar outra fonte, troque inherit pela fonte desejada
+    */
+    --fonte: "Consolas", monospace;
+
+    /* ---------- Cores das categorias ---------- */
+    --cor-hidrogenio: var(--bs-danger);
+    --cor-metal: var(--bs-warning);
+    --cor-ametal: var(--bs-success);
+    --cor-gas-nobre: var(--bs-info);
+
+    /* ---------- Cores gerais ---------- */
+    --cor-fundo: var(--bs-body-bg);
+    --cor-texto: var(--bs-body-color);
+    --cor-texto-fraco: var(--bs-secondary-color);
+    --cor-borda: var(--bs-border-color);
+    --cor-fundo-popup: rgba(0, 0, 0, 0.6);
+
+    /* Quanto da cor da categoria aparece no fundo da célula (0% a 100%) */
+    --forca-cor-fundo: 15%;
+
+    /* ---------- Tabela ---------- */
+    --largura-maxima: 1400px;
+    --largura-minima-celula: 62px;
+    --espaco-celulas: 4px;
+    --espaco-series: 0.75rem;
+
+    /* ---------- Célula ---------- */
+    --tamanho-fonte-celula: 16px;
+    --tamanho-fonte-celula-grande: 32px;
+    --largura-celula-grande: 10rem;
+    --espessura-borda: 2px;
+    --arredondamento: 6px;
+    --zoom-ao-passar-mouse: 1.1;
+
+    /* ---------- Pesquisa ---------- */
+    --largura-pesquisa: 420px;
+    --opacidade-apagada: 0.15;
+
+    /* ---------- Popup ---------- */
+    --largura-popup: 760px;
+    --arredondamento-popup: 12px;
+    --espaco-popup: 1.5rem;
+
+    /* ---------- Animação ---------- */
+    --duracao-animacao: 0.15s;
+}
+
+* {
+    font-family: var(--fonte);
+}
+
+/* 
+-------------------------------------------------
+end region CONFIGURAÇÕES
+------------------------------------------------- 
+*/
+
+
+
+/* 
+=================================================
+region CATEGORIAS
+=================================================
+*/
+
+.tipo-hidrogenio {
+    --cor-tipo: var(--cor-hidrogenio);
+}
+
+.tipo-metal {
+    --cor-tipo: var(--cor-metal);
+}
+
+.tipo-ametal {
+    --cor-tipo: var(--cor-ametal);
+}
+
+.tipo-gas-nobre {
+    --cor-tipo: var(--cor-gas-nobre);
+}
+
+/* 
+-------------------------------------------------
+end region CATEGORIAS
+------------------------------------------------- 
+*/
+
+
+
+/* 
+=================================================
+region CABEÇALHO
+================================================= 
+*/
+
+.cabecalho {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    max-width: var(--largura-maxima);
+    margin: 0 auto 1.5rem;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.caixa-pesquisa {
+    width: 100%;
+    max-width: var(--largura-pesquisa);
+}
+
+/* 
+-------------------------------------------------
+end region CABEÇALHO
+------------------------------------------------- 
+*/
+
+
+
+/*
+=================================================
+region TABELA
+================================================= 
+*/
+
+/* Deixa rolar para o lado em telas pequenas */
+.rolagem {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+/* 
+A tabela é uma grade de 18 colunas (famílias).
+Linhas 1 a 7: períodos.
+Linha 8: espaço vazio.
+Linhas 9 e 10: lantanídeos e actinídeos. 
+*/
+.tabela-periodica {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(var(--largura-minima-celula), 1fr));
+    grid-template-rows: repeat(7, auto) var(--espaco-series) auto auto;
+    gap: var(--espaco-celulas);
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+}
+
+/* 
+-------------------------------------------------
+end region TABELA
+------------------------------------------------- 
+*/
+
+
+
+/* 
+=================================================
+region CÉLULA DO ELEMENTO
+=================================================
+Os tamanhos de dentro usam "em": eles crescem junto
+com o font-size da célula. Por isso a célula grande
+do popup só precisa mudar o font-size.
+*/
+
+.celula-elemento {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    min-width: 0;
+    padding: 0.3em;
+    border: var(--espessura-borda) solid var(--cor-tipo);
+    border-radius: var(--arredondamento);
+    /* fundo = cor da categoria misturada com a cor de fundo da página */
+    background-color: color-mix(in srgb, var(--cor-tipo) var(--forca-cor-fundo), var(--cor-fundo));
+    color: var(--cor-texto);
+    font-size: var(--tamanho-fonte-celula);
+    cursor: pointer;
+    transition: transform var(--duracao-animacao), opacity var(--duracao-animacao);
+}
+
+.celula-elemento:hover {
+    transform: scale(var(--zoom-ao-passar-mouse));
+    z-index: 1;
+}
+
+.celula-elemento:focus-visible {
+    outline: 3px solid var(--cor-tipo);
+    outline-offset: 2px;
+}
+
+.numero {
+    position: absolute;
+    top: 0.2em;
+    left: 0.35em;
+    font-size: 0.7em;
+}
+
+.icone-estado {
+    position: absolute;
+    top: 0.25em;
+    right: 0.4em;
+    font-size: 0.65em;
+    color: var(--cor-texto-fraco);
+}
+
+.simbolo {
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cor-tipo);
+}
+
+/* Nomes grandes terminam com "..." em vez de quebrar a célula */
+.nome {
+    max-width: 100%;
+    font-size: 0.6em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+}
+
+/* Elementos que não combinam com a pesquisa */
+.apagada {
+    opacity: var(--opacidade-apagada);
+}
+
+/* Células "57–71" e "89–103" que apontam para as séries */
+.marcador-serie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--espessura-borda) dashed var(--cor-borda);
+    border-radius: var(--arredondamento);
+    font-size: 0.75rem;
+    color: var(--cor-texto-fraco);
+}
+
+/* 
+-------------------------------------------------
+end region CÉLULA DO ELEMENTO
+------------------------------------------------- 
+*/
+
+
+
+/*
+=================================================
+region LEGENDA
+================================================= 
+*/
+
+/* Ocupa o espaço vazio: linhas 1 a 3, colunas 3 a 12 */
+.legenda {
+    grid-row: 1 / 4;
+    grid-column: 3 / 13;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    padding: 0 1rem;
+}
+
+.titulo-legenda {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.lista-legenda {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.lista-legenda li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: capitalize;
+}
+
+.amostra-cor {
+    width: 0.9em;
+    height: 0.9em;
+    border-radius: 3px;
+    background-color: var(--cor-tipo);
+}
+
+/* 
+-------------------------------------------------
+end region LEGENDA
+------------------------------------------------- 
+*/
+
+
+
+/* 
+=================================================
+region POPUP
+================================================= 
+*/
+
+.popup {
+    width: min(var(--largura-popup), 94vw);
+    padding: 0;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--arredondamento-popup);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+/* Fundo escuro atrás do popup */
+.popup::backdrop {
+    background-color: var(--cor-fundo-popup);
+}
+
+.popup-conteudo {
+    padding: var(--espaco-popup);
+}
+
+.popup-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+/* A célula do popup é maior e não é clicável */
+.celula-grande {
+    width: var(--largura-celula-grande);
+    font-size: var(--tamanho-fonte-celula-grande);
+    pointer-events: none;
+}
+
+.popup th {
+    width: 45%;
+    font-weight: 600;
+    border-top-left-radius: var(--arredondamento);
+    border-bottom-left-radius: var(--arredondamento);
+}
+
+.popup td {
+    border-top-right-radius: var(--arredondamento);
+    border-bottom-right-radius: var(--arredondamento);
+}
+
+/* 
+-------------------------------------------------
+end region POPUP
+------------------------------------------------- 
+*/
+
+
+
+/* Para quem prefere menos animação no computador */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --duracao-animacao: 0s;
+    }
+}
